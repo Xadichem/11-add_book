@@ -18,6 +18,12 @@ UI.prototype.addBookList = function (book) {
   list.appendChild(row);
 };
 
+UI.prototype.delete = function (tr) {
+  if (tr.className === "delete") {
+    tr.parentElement.parentElement.remove();
+  }
+};
+
 UI.prototype.showAlert = function (msg, className) {
   const div = document.createElement("div");
   div.className = `alert ${className}`;
@@ -58,4 +64,9 @@ document.getElementById("form").addEventListener("submit", (e) => {
   }
 
   e.preventDefault();
+
+  document.querySelector("#book-list").addEventListener("click", function (e) {
+    const ui = new UI();
+    ui.delete(e.target);
+  });
 });
